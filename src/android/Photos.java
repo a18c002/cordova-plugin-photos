@@ -60,6 +60,7 @@ public class Photos extends CordovaPlugin {
 
 	private static final String P_ID = "id";
 	private static final String P_NAME = "name";
+	private static final String P_DATA = "data";
 	private static final String P_WIDTH = "width";
 	private static final String P_HEIGHT = "height";
 	private static final String P_LAT = "latitude";
@@ -104,7 +105,7 @@ public class Photos extends CordovaPlugin {
 
 	@SuppressWarnings("MismatchedReadAndWriteOfArray")
 	private static final String[] PRJ_PHOTOS =
-			new String[]{_ID, TITLE, DATE_TAKEN, LATITUDE, LONGITUDE, WIDTH, HEIGHT};
+			new String[]{_ID, DATA, TITLE, DATE_TAKEN, LATITUDE, LONGITUDE, WIDTH, HEIGHT};
 
 	private String action;
 	private JSONArray data;
@@ -259,6 +260,7 @@ public class Photos extends CordovaPlugin {
 					if (offset <= fetched) {
 						final JSONObject item = new JSONObject();
 						item.put(P_ID, cursor.getString(cursor.getColumnIndex(_ID)));
+						item.put(P_DATA, cursor.getString(cursor.getColumnIndex(DATA)));
 						item.put(P_NAME, cursor.getString(cursor.getColumnIndex(TITLE)));
 						item.put(P_TYPE, "image/jpeg");
 						long ts = cursor.getLong(cursor.getColumnIndex(DATE_TAKEN));
